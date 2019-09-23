@@ -9,8 +9,8 @@
   
   <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
     <p align="center">
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
+<a href="https://travis-ci.org/firiz/my-gift"><img src="https://travis-ci.org/firiz/my-gift.svg?branch=master" alt="Travis" /></a>
+<a href='https://coveralls.io/github/firiz/my-gift?branch=master'><img src='https://coveralls.io/repos/github/firiz/my-gift/badge.svg?branch=master' alt='Coverage Status' /></a>
 
 ## Description
 

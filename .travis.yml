@@ -1,3 +1,14 @@
 language: node_js
 node_js: 
-  - "stable"
+  - stable
+branches:
+  only:
+  - master
+cache:
+  directories:
+  - node_modules
+install:
+- yarn
+script:
+- yarn run test:cov
+- yarn run coveralls
