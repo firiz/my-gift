@@ -47,18 +47,12 @@ describe('Books Controller', () => {
   });
 
   it('should delete specific book with id', async () => {
-    const query = {
-      bookID: 2,
-    };
-    const books = await controller.deleteBook(query);
+    const books = await controller.deleteBook(2);
     expect(books).toBeDefined;
     expect(books.length).toBe(6);
   });
 
   it('should throw error while deleting specific book when id does not exist', async () => {
-    const query = {
-      bookID: 2,
-    };
-    await expect(controller.deleteBook(query)).rejects.toThrowError();
+    await expect(controller.deleteBook(2)).rejects.toThrowError();
   });
 });
