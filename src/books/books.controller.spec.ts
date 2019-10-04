@@ -1,6 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
 import { BooksController } from './books.controller';
 import { BooksService } from './books.service';
+import { Book } from './book.entity';
+import { BooksReporsitoryMock } from './mock/books.repository.mock';
 
 describe('Books Controller', () => {
   let controller: BooksController;
@@ -8,7 +11,13 @@ describe('Books Controller', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [BooksController],
-      providers: [BooksService],
+      providers: [
+        BooksService,
+        {
+          provide: getRepositoryToken(Book),
+          useValue: new BooksReporsitoryMock(),
+        },
+      ],
     }).compile();
 
     controller = module.get<BooksController>(BooksController);

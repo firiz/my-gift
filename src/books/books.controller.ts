@@ -24,13 +24,15 @@ export class BooksController {
   @ApiCreatedResponse({ description: 'The record has been successfully created.', type: [CreateBookDTO] })
   @ApiForbiddenResponse({ description: 'Forbidden.' })
   async addBook(@Body() createBookDTO: CreateBookDTO) {
-    const book = await this.booksService.addBook(createBookDTO);
-    return book;
+    await this.booksService.addBook(createBookDTO);
+    const books = await this.booksService.getBooks();
+    return books;
   }
 
   @Delete(':bookID')
   async deleteBook(@Param('bookID') bookID: number) {
-    const books = await this.booksService.deleteBook(bookID);
+    await this.booksService.deleteBook(bookID);
+    const books = await this.booksService.getBooks();
     return books;
   }
 }

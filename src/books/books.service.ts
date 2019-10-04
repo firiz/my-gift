@@ -1,43 +1,30 @@
-import { Injectable, HttpException } from '@nestjs/common';
-import { BOOKS } from '../mocks/books.mock';
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Book } from './book.entity';
 
 @Injectable()
 export class BooksService {
-  books = BOOKS;
+    constructor(
+      @InjectRepository(Book)
+      private readonly bookRepository: Repository<Book>,
+    ) {}
 
-  getBooks(): Promise<any> {
-    return new Promise(resolve => {
-      resolve(this.books);
-    });
+  async getBooks(): Promise<Book[]> {
+    return await this.bookRepository.find();
   }
 
-  getBook(bookId): Promise<any> {
+  async getBook(bookId): Promise<Book> {
     const id = Number(bookId);
-    return new Promise(resolve => {
-      const book = this.books.find(b => b.id === id);
-      if (!book) {
-        throw new HttpException('Book does not exist!', 404);
-      }
-      resolve(book);
-    });
+    return await this.bookRepository.findOne(id);
   }
 
-  addBook(book): Promise<any> {
-    return new Promise(resolve => {
-      this.books.push(book);
-      resolve(this.books);
-    });
+  async addBook(book): Promise<any> {
+    return await this.bookRepository.insert(book);
   }
 
-  deleteBook(bookID): Promise<any> {
+  async deleteBook(bookID): Promise<any> {
     const id = Number(bookID);
-    return new Promise(resolve => {
-      const index = this.books.findIndex(book => book.id === id);
-      if (index === -1) {
-        throw new HttpException('Book does not exist!', 404);
-      }
-      this.books.splice(index, 1);
-      resolve(this.books);
-    });
+    return await this.bookRepository.delete(id);
   }
 }
