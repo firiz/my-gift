@@ -12,16 +12,16 @@ export class BooksService {
   }
 
   getBook(bookId): Promise<any> {
-    let id = Number(bookId);
+    const id = Number(bookId);
     return new Promise(resolve => {
-      const book = this.books.find(book => book.id === id);
+      const book = this.books.find(b => b.id === id);
       if (!book) {
         throw new HttpException('Book does not exist!', 404);
       }
       resolve(book);
     });
-  } 
-  
+  }
+
   addBook(book): Promise<any> {
     return new Promise(resolve => {
       this.books.push(book);
@@ -30,9 +30,9 @@ export class BooksService {
   }
 
   deleteBook(bookID): Promise<any> {
-    let id = Number(bookID);
+    const id = Number(bookID);
     return new Promise(resolve => {
-      let index = this.books.findIndex(book => book.id === id);
+      const index = this.books.findIndex(book => book.id === id);
       if (index === -1) {
         throw new HttpException('Book does not exist!', 404);
       }
