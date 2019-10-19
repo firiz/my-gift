@@ -3,7 +3,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { BooksController } from './books.controller';
 import { BooksService } from './books.service';
 import { Book } from './book.entity';
-import { BooksReporsitoryMock } from './mock/books.repository.mock';
+import { BooksRepositoryMock } from './mock/books.repository.mock';
 
 describe('Books Controller', () => {
   let controller: BooksController;
@@ -15,7 +15,7 @@ describe('Books Controller', () => {
         BooksService,
         {
           provide: getRepositoryToken(Book),
-          useValue: new BooksReporsitoryMock(),
+          useValue: new BooksRepositoryMock(),
         },
       ],
     }).compile();
@@ -34,18 +34,17 @@ describe('Books Controller', () => {
   });
 
   it('should get specific book with id', async () => {
-    const book = await controller.getBook(2);
+    const book = await controller.getBook('2');
     expect(book).toBeDefined();
-    expect(book.id).toBe(2);
+    expect(book.id).toBe('2');
   });
 
   it('should throw error while getting specific book when id does not exist', async () => {
-    await expect(controller.getBook(10)).rejects.toThrowError();
+    await expect(controller.getBook('10')).rejects.toThrowError();
   });
 
   it('should add a book', async () => {
     const book = {
-      id: 7,
       title: 'testing',
       description: 'a book about testing',
       author: 'tester',
@@ -56,12 +55,12 @@ describe('Books Controller', () => {
   });
 
   it('should delete specific book with id', async () => {
-    const books = await controller.deleteBook(2);
+    const books = await controller.deleteBook('2');
     expect(books).toBeDefined();
     expect(books.length).toBe(6);
   });
 
   it('should throw error while deleting specific book when id does not exist', async () => {
-    await expect(controller.deleteBook(2)).rejects.toThrowError();
+    await expect(controller.deleteBook('2')).rejects.toThrowError();
   });
 });

@@ -4,6 +4,11 @@
   "jsRules": {
     "no-unused-expression": true
   },
+  "linterOptions": {
+    "exclude": [
+      "**/migrations/**/*.ts"
+    ]
+  },
   "rules": {
     "quotemark": [true, "single"],
     "member-access": [false],

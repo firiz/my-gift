@@ -1,8 +1,14 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 export class Book {
-  @PrimaryGeneratedColumn()
+  constructor(title, description, author) {
+    this.title = title;
+    this.description = description;
+    this.author = author;
+  }
+
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column({ length: 100 })
@@ -13,4 +19,10 @@ export class Book {
 
   @Column()
   author: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

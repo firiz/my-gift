@@ -14,17 +14,15 @@ export class BooksService {
     return await this.bookRepository.find();
   }
 
-  async getBook(bookId): Promise<Book> {
-    const id = Number(bookId);
-    return await this.bookRepository.findOne(id);
+  async getBook(bookId: string): Promise<Book> {
+    return await this.bookRepository.findOne(bookId);
   }
 
-  async addBook(book): Promise<any> {
+  async addBook(book: Book): Promise<any> {
     return await this.bookRepository.insert(book);
   }
 
-  async deleteBook(bookID): Promise<any> {
-    const id = Number(bookID);
-    return await this.bookRepository.delete(id);
+  async deleteBook(bookId: string): Promise<any> {
+    return await this.bookRepository.delete(bookId);
   }
 }
