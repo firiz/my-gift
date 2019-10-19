@@ -2,3 +2,9 @@ node_modules
 coverage
 dist
 *.log
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/my-gift.iml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/vcs.xml
