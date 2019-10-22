@@ -11,6 +11,7 @@ async function bootstrap() {
     .setTitle('Wedding API')
     .setDescription('The wedding API description')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);
